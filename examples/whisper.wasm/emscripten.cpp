@@ -64,13 +64,17 @@ EMSCRIPTEN_BINDINGS(whisper) {
             return -2;
         }
 
-        struct whisper_full_params params = whisper_full_default_params(whisper_sampling_strategy::WHISPER_SAMPLING_GREEDY);
+        struct whisper_full_params params = whisper_full_default_params(whisper_sampling_strategy::WHISPER_SAMPLING_BEAM_SEARCH);
         bool is_multilingual = whisper_is_multilingual(g_contexts[index]);
 
         params.print_realtime   = true;
-        params.print_progress   = false;
+        params.print_progress   = true;
         params.print_timestamps = true;
         params.print_special    = false;
+        params.logprob_thold    = 0.75f;
+        params.temperature      = 0.4;
+        params.max_initial_ts   = 0f;
+        params.suppress_blank    = true;
         params.translate        = translate;
         params.language         = is_multilingual ? strdup(lang.c_str()) : "en";
         params.n_threads        = std::min(nthreads, std::min(16, mpow2(std::thread::hardware_concurrency())));
