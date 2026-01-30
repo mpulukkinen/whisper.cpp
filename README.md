@@ -1,5 +1,10 @@
 # whisper.cpp
 
+# whisper.cpp (https://lyricVideo.Studio Fork)
+Optimized for **music lyric extraction and synchronization**.
+- Tweaked values for better lyrics extaction
+- [Try it live](https://lyricvideo.studio/) → NOTE: WebVersion one-trick-pony coming up, stay tuned!!!
+
 ![whisper.cpp](https://user-images.githubusercontent.com/1991296/235238348-05d0f6a4-da44-4900-a1de-d0707e75b763.jpeg)
 
 [![Actions Status](https://github.com/ggml-org/whisper.cpp/workflows/CI/badge.svg)](https://github.com/ggml-org/whisper.cpp/actions)
