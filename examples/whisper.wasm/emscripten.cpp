@@ -72,8 +72,8 @@ EMSCRIPTEN_BINDINGS(whisper) {
         params.print_timestamps = true;
         params.print_special    = false;
         params.logprob_thold    = 0.75f;
-        params.temperature      = 0.4;
-        params.max_initial_ts   = 0f;
+        params.temperature      = 0.4f;
+        params.max_initial_ts   = 0.0f;
         params.suppress_blank    = true;
         params.translate        = translate;
         params.language         = is_multilingual ? strdup(lang.c_str()) : "en";
