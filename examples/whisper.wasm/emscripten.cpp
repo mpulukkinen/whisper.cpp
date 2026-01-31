@@ -10,6 +10,11 @@ std::thread g_worker;
 
 std::vector<struct whisper_context *> g_contexts(4, nullptr);
 
+// Progress callback to send updates to JavaScript
+void progress_callback(struct whisper_context * ctx, struct whisper_state * state, int progress, void * user_data) {
+    printf("whisper_progress: %d%%\n", progress);
+}
+
 static inline int mpow2(int n) {
     int p = 1;
     while (p <= n) p *= 2;
@@ -79,6 +84,7 @@ EMSCRIPTEN_BINDINGS(whisper) {
         params.language         = is_multilingual ? strdup(lang.c_str()) : "en";
         params.n_threads        = std::min(nthreads, std::min(16, mpow2(std::thread::hardware_concurrency())));
         params.offset_ms        = 0;
+        params.progress_callback = progress_callback;
 
         std::vector<float> pcmf32;
         const int n = audio["length"].as<int>();
